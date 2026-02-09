@@ -3,10 +3,10 @@
 [![Frontend CI](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml)
 [![Backend CI](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml)
 
-- [https://github.com/obj809/frontend-media-transform-platform](https://github.com/obj809/frontend-media-transform-platform)
-- [https://github.com/obj809/backend-media-transform-platform](https://github.com/obj809/backend-media-transform-platform)
-- [https://github.com/obj809/db-media-transform-platform](https://github.com/obj809/db-media-transform-platform)
-- [https://github.com/obj809/workers-media-transform-platform](https://github.com/obj809/workers-media-transform-platform)
+- [Frontend](https://github.com/obj809/frontend-media-transform-platform)
+- [Backend](https://github.com/obj809/backend-media-transform-platform)
+- [Database](https://github.com/obj809/db-media-transform-platform)
+- [Workers](https://github.com/obj809/workers-media-transform-platform)
 
 Media Transform Platform is a set of focused repositories that together provide image upload, transformation, and delivery.
 
