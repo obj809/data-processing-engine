@@ -1,44 +1,75 @@
-# media-transform-platform
+# Media Transform Platform
 
-[![Frontend CI](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml)
-[![Backend CI](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml)
+![frontend-ci](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml/badge.svg)
+![backend-ci](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml/badge.svg)
+
+## Project Overview
+Media Transform Platform is a full-stack application for image upload, transformation, and delivery.
+
+## Project Links
 
 - [Frontend](https://github.com/obj809/frontend-media-transform-platform)
 - [Backend](https://github.com/obj809/backend-media-transform-platform)
 - [Database](https://github.com/obj809/db-media-transform-platform)
 - [Workers](https://github.com/obj809/workers-media-transform-platform)
 
-Media Transform Platform is a set of focused repositories that together provide image upload, transformation, and delivery.
+# Frontend - Next.js Application
 
-## Platform repositories
+https://github.com/obj809/frontend-media-transform-platform
 
-- `frontend-media-transform-platform`
-  Next.js UI for file selection, upload, preview, and download.
-- `backend-media-transform-platform`
-  FastAPI service for health checks, upload validation, image processing, and file serving.
-- `db-media-transform-platform`
-  Database and persistence concerns for platform data.
-- `workers-media-transform-platform`
-  Worker processes for async/background media tasks.
+## Tech Stack
 
-## Local architecture
+Next.js 16, React 19, TypeScript, Sass, Tailwind CSS 4, Jest, Testing Library, ESLint
 
-1. Frontend sends `GET /health` to verify backend connectivity.
-2. Frontend uploads JPG files to `POST /upload`.
-3. Backend stores upload in `uploads/`, processes image (grayscale), stores output in `processed/`.
-4. Frontend previews/downloads via `GET /download/{filename}`.
+## Project Features
 
-## Prerequisites
+- [x] Drag-and-drop JPG upload flow
+- [x] Client-side validation (JPG/JPEG, 25MB max)
+- [x] Backend health check integration
+- [x] Processed image preview and download action
+- [x] CI lint, test, and build pipeline
 
-- Node.js 20+
-- Python 3.12+
-- `npm` and `pip`
+# Backend - FastAPI API
 
-## Run locally
+https://github.com/obj809/backend-media-transform-platform
+
+## Tech Stack
+
+Python 3.12+, FastAPI, Uvicorn, Pillow, pytest, GitHub Actions
+
+## Project Features
+
+- [x] `GET /` and `GET /health` service endpoints
+- [x] `POST /upload` with content-type and size validation
+- [x] Image processing pipeline (grayscale transform)
+- [x] `GET /download/{filename}` for processed media delivery
+- [x] Automated API and upload tests in CI
+
+# Database - Platform Data Layer
+
+https://github.com/obj809/db-media-transform-platform
+
+## Focus
+
+- [x] Platform data modeling and persistence
+- [x] Schema and storage support for media metadata
+- [x] Backend-aligned data contracts
+
+# Workers - Background Processing
+
+https://github.com/obj809/workers-media-transform-platform
+
+## Focus
+
+- [x] Asynchronous media processing tasks
+- [x] Background job orchestration
+- [x] Scalable worker execution patterns
+
+# Local Development
 
 Start backend first, then frontend.
 
-### Backend (`backend-media-transform-platform`)
+## Backend
 
 ```bash
 python3 -m venv venv
@@ -47,18 +78,17 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend runs at `http://localhost:8000` (docs at `http://localhost:8000/docs`).
+Backend URL: `http://localhost:8000`  
+API docs: `http://localhost:8000/docs`
 
-### Frontend (`frontend-media-transform-platform`)
+## Frontend
 
 ```bash
 npm install
 npm run dev
 ```
 
-Frontend runs at `http://localhost:3000`.
-
-## Configuration
+Frontend URL: `http://localhost:3000`
 
 Frontend environment variable:
 
@@ -66,43 +96,23 @@ Frontend environment variable:
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-If unset, frontend defaults to `http://localhost:8000`.
-
-## Backend API contract (current)
+# Backend API Endpoints
 
 - `GET /`
-  Returns a basic service message.
 - `GET /health`
-  Returns backend health status.
 - `POST /upload`
-  Accepts `image/jpeg` up to 25MB, returns stored and processed filenames with metadata.
 - `GET /download/{filename}`
-  Returns processed JPEG file by filename.
 
-## Tests
+# Test Commands
 
-### Frontend
+## Frontend
 
 ```bash
 npm test
 ```
 
-### Backend
+## Backend
 
 ```bash
 ./venv/bin/python -m pytest -v
 ```
-
-## CI
-
-- Frontend CI runs lint, test, and build on push/PR to `main`.
-- Backend CI runs pytest on push/PR to `main`.
-
-## Troubleshooting
-
-- Frontend shows backend offline:
-  Confirm backend is running on `http://localhost:8000` or set `NEXT_PUBLIC_API_URL`.
-- Upload fails:
-  Ensure file is JPG/JPEG and under 25MB.
-- Backend tests fail due to environment:
-  Use the project venv interpreter (`./venv/bin/python -m pytest -v`).
