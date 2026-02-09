@@ -1,4 +1,4 @@
-# Media Transform Platform
+# Data Processing Engine
 
 ![frontend-ci](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml/badge.svg)
 ![backend-ci](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml/badge.svg)
