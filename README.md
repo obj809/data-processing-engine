@@ -3,116 +3,82 @@
 ![frontend-ci](https://github.com/obj809/frontend-media-transform-platform/actions/workflows/ci.yml/badge.svg)
 ![backend-ci](https://github.com/obj809/backend-media-transform-platform/actions/workflows/ci.yml/badge.svg)
 
-## Project Overview
-Media Transform Platform is a full-stack application for image upload, transformation, and delivery.
+A full-stack image processing platform for uploading, transforming, and downloading images.
 
-## Project Links
+## Supported Formats
 
-- [Frontend](https://github.com/obj809/frontend-media-transform-platform)
-- [Backend](https://github.com/obj809/backend-media-transform-platform)
-- [Database](https://github.com/obj809/db-media-transform-platform)
-- [Workers](https://github.com/obj809/workers-media-transform-platform)
+| Input | Output |
+|-------|--------|
+| JPG, PNG, HEIC/HEIF | JPG |
 
-# Frontend - Next.js Application
+## Project Structure
 
-https://github.com/obj809/frontend-media-transform-platform
-
-## Tech Stack
-
-Next.js 16, React 19, TypeScript, Sass, Tailwind CSS 4, Jest, Testing Library, ESLint
-
-## Project Features
-
-- [x] Drag-and-drop JPG upload flow
-- [x] Client-side validation (JPG/JPEG, 25MB max)
-- [x] Backend health check integration
-- [x] Processed image preview and download action
-- [x] CI lint, test, and build pipeline
-
-# Backend - FastAPI API
-
-https://github.com/obj809/backend-media-transform-platform
+| Repository | Description |
+|------------|-------------|
+| [Frontend](https://github.com/obj809/frontend-media-transform-platform) | Next.js web application |
+| [Backend](https://github.com/obj809/backend-media-transform-platform) | FastAPI service |
+<!-- | [Database](https://github.com/obj809/db-media-transform-platform) | Data layer |
+| [Workers](https://github.com/obj809/workers-media-transform-platform) | Background processing | -->
 
 ## Tech Stack
 
-Python 3.12+, FastAPI, Uvicorn, Pillow, pytest, GitHub Actions
+**Frontend**: Next.js 16, React 19, TypeScript, Sass, Jest
 
-## Project Features
+**Backend**: Python 3.12+, FastAPI, Uvicorn, Pillow, pillow-heif, pytest
 
-- [x] `GET /` and `GET /health` service endpoints
-- [x] `POST /upload` with content-type and size validation
-- [x] Image processing pipeline (grayscale transform)
-- [x] `GET /download/{filename}` for processed media delivery
-- [x] Automated API and upload tests in CI
+## Features
 
-# Database - Platform Data Layer
+- Drag-and-drop file upload (anywhere on left section)
+- Client-side validation (format and 25MB size limit)
+- Backend health check with connection status indicator
+- Image conversion to JPG
+- Processed image preview and download
 
-https://github.com/obj809/db-media-transform-platform
+## API Endpoints
 
-## Focus
+| Endpoint | Description |
+|----------|-------------|
+| `GET /` | Service info |
+| `GET /health` | Health check |
+| `POST /upload` | Upload and process image |
+| `GET /download/{filename}` | Download processed image |
 
-- [x] Platform data modeling and persistence
-- [x] Schema and storage support for media metadata
-- [x] Backend-aligned data contracts
+## Local Development
 
-# Workers - Background Processing
-
-https://github.com/obj809/workers-media-transform-platform
-
-## Focus
-
-- [x] Asynchronous media processing tasks
-- [x] Background job orchestration
-- [x] Scalable worker execution patterns
-
-# Local Development
-
-Start backend first, then frontend.
-
-## Backend
+### Backend
 
 ```bash
+cd backend-data-processing-engine
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend URL: `http://localhost:8000`  
-API docs: `http://localhost:8000/docs`
+- API: http://localhost:8000
+- Docs: http://localhost:8000/docs
 
-## Frontend
+### Frontend
 
 ```bash
+cd frontend-data-processing-engine
 npm install
 npm run dev
 ```
 
-Frontend URL: `http://localhost:3000`
+- App: http://localhost:3000
 
-Frontend environment variable:
-
+Optional `.env.local`:
 ```bash
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-# Backend API Endpoints
-
-- `GET /`
-- `GET /health`
-- `POST /upload`
-- `GET /download/{filename}`
-
-# Test Commands
-
-## Frontend
+## Tests
 
 ```bash
-npm test
-```
+# Frontend
+cd frontend-data-processing-engine && npm test
 
-## Backend
-
-```bash
-./venv/bin/python -m pytest -v
+# Backend
+cd backend-data-processing-engine && ./venv/bin/pytest -v
 ```
